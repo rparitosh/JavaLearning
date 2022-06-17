@@ -7,34 +7,31 @@ public class MultiThreadExample {
         Thread t1 = new Thread(() -> {
             for (int i=0;i<5; i++){
                 System.out.println("Hi");
+                /*
                 try{Thread.sleep(200);}catch (Exception e){
                     e.printStackTrace();
                 }
+
+                 */
             }
         });
         Thread t2 = new Thread(() -> {
             for (int i=0;i<5; i++){
                 System.out.println("Hello");
+                /*
                 try{Thread.sleep(200);}catch (Exception e){
                     e.printStackTrace();
                 }
+
+                 */
             }
         });
 
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.MAX_PRIORITY);
         t1.start();
-        try{Thread.sleep(100);}catch (Exception e){
-            e.printStackTrace();
-        }
         t2.start();
-        System.out.println("T1 alive before join : " + t1.isAlive());
-        System.out.println("T2 alive before join : " + t2.isAlive());
 
-        t1.join();
-        t2.join();
-        System.out.println("T1 alive after join : " + t1.isAlive());
-        System.out.println("T2 alive after join : " + t2.isAlive());
-
-        System.out.println("Bye");
     }
 
 }
