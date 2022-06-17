@@ -6,15 +6,17 @@ public class MultiThreadExample {
         Hi hi = new Hi();
         Hello hello = new Hello();
 
+        Thread t1 = new Thread(hi);
+        Thread t2 = new Thread(hello);
 
-        hi.start();
+        t1.start();
         try{Thread.sleep(100);}catch (Exception e){}
-        hello.start();
+        t2.start();
     }
 
 }
 
-class Hi extends Thread{
+class Hi implements Runnable{
 
     @Override
     public void run () {
@@ -25,7 +27,7 @@ class Hi extends Thread{
     }
 }
 
-class Hello extends Thread{
+class Hello  implements Runnable{
 
     @Override
     public void run (){
