@@ -23,6 +23,10 @@ public class SyncExample {
                     synchronized (counter) {
                         counter.increment();
                     }
+                    if (Thread.interrupted()){
+                        System.out.println("t1 is interrupted");
+                        return;
+                    }
                 }
             }
         });
@@ -62,8 +66,10 @@ public class SyncExample {
 
 
         t1.start();
+        Thread.sleep(7);
         t2.start();
         t3.start();
+        t1.interrupt();
         t4.start();
 
         t1.join();
